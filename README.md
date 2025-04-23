@@ -1,4 +1,4 @@
-# Cibo Seat
+# Study Assistant
 
 ##  AI powered Study Assistant  
 This app helps you manage your Study materials and helps you teach and clear doubts.
