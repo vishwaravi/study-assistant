@@ -37,6 +37,13 @@ An intelligent study platform that helps students organize their learning materi
   - Mobile-friendly
 
 ---
+## Architecture Diagarm 
+
+![architecture](/docs/screenshots/Architecture_Diagram.png)
+---
+## Database Schema
+![db_schema](/docs/screenshots/db_schema.png)
+---
 
 ## 🛠️ Project Setup
 
@@ -78,8 +85,9 @@ DB_USERNAME="<DB_USERNAME>"
 DB_PASSWORD="<DB_PASSWORD>"
 JWT_SECRET="<JWT_SECRET>"
 CORS_ORIGIN="<CORS_ORIGIN>"
-#note : if you are using other DB change it accordingly.
 ```
+>note : if you are using other DB change it accordingly. 
+if you are using MySQL add a Mysql Dialect 
 
 Create a `.env` file in the frontend project:
 
@@ -112,13 +120,13 @@ VITE_BACKEND_BASE_URL="<BACKEND_BASE_URL>"
 
 ## 📸 Demo Screenshots
 #### Login
-![login](/screenshots/login.png)
+![login](/docs/screenshots/login.png)
 ---
 #### Home
-![home](/screenshots/home.png)
+![home](/docs/screenshots/home.png)
 ---
 #### Flashcards
-![home](/screenshots/flash-cards.png)
+![home](/docs/screenshots/flash-cards.png)
 ---
 
 <!-- ## 🎥 Demo Video
