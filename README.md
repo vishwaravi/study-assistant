@@ -39,10 +39,10 @@ An intelligent study platform that helps students organize their learning materi
 ---
 ## Architecture Diagarm 
 
-![architecture](/docs/screenshots/Architecture_Diagram.png)
+![architecture](/docs/Architecture_Diagram.png)
 ---
 ## Database Schema
-![db_schema](/docs/screenshots/db_schema.png)
+![db_schema](/docs/db_schema.png)
 ---
 
 ## 🛠️ Project Setup
