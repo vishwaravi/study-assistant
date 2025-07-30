@@ -29,7 +29,7 @@ public class SecurityConfig {
     @Autowired
     JWTFilter jwtFilter;
 
-    @Value("${CORS_ORGIN}")
+    @Value("${CORS_ORIGIN}")
     String corsOrgin;
 
     @Bean

@@ -11,7 +11,7 @@ An intelligent study platform that helps students organize their learning materi
 - **Backend**: Spring Boot (v 3.4.5), Java (JDK 21), Spring Security, JWT Authentication
 - **Database**: Maria DB (v 11.7.2)
 - **AI Integration**: Gemini 2.0 Flash (for Summarization, Question Generation, Concept Explanation)
-- **Other Tools**: FireBase Storage (Storing materials), Post Man.
+- **Other Tools**: SupaBase Storage (Storing materials), Post Man.
 
 ---
 
@@ -92,17 +92,13 @@ if you are using MySQL add a Mysql Dialect
 Create a `.env` file in the frontend project:
 
 ```bash
-VITE_REACT_APP_FIREBASE_API_KEY="<FIREBASE_API_KEY>"
-VITE_REACT_APP_FIREBASE_AUTH_DOMAIN="<FIREBASE_AUTH_DOMAIN>"
-VITE_REACT_APP_FIREBASE_PROJECT_ID="<FIREBASE_PROJECT_ID>"
-VITE_REACT_APP_FIREBASE_STORAGE_BUCKET="<FIREBASE_STORAGE_BUCKET>"
-VITE_REACT_APP_FIREBASE_MESSAGING_SENDER_ID="<FIREBASE_MESSAGING_SENDER_ID>"
-VITE_REACT_APP_FIREBASE_APP_ID="<FIREBASE_APP_ID>"
+# Supabase Configuration
+VITE_SUPABASE_URL="<YOUR_SUPABASE_URL>"
+VITE_SUPABASE_ANON_KEY="<YOUR_SUPABASE_ANON_KEY>"
+
 
 VITE_GEMINI_API_KEY="<GEMINI_API_KEY>"
-
 VITE_BACKEND_BASE_URL="<BACKEND_BASE_URL>"
-
 ```
 
 ---

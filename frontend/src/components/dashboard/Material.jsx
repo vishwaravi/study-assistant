@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../api/api';
-import { storage, ref, uploadBytes, getDownloadURL } from '../../firebase';
+import { uploadFile } from '../../supabase';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -48,6 +48,7 @@ const Material = () => {
         description: form.description,
         fileUrl: fileData.fileUrl,
         fileName: fileData.fileName,
+        filePath: fileData.filePath, // Add filePath for future deletion
         userId,
       };
 
@@ -88,14 +89,15 @@ const Material = () => {
   };
 
   const handleFileUpload = async (file) => {
-    const storageRef = ref(storage, `study_materials/${Date.now()}_${file.name}`);
     setIsLoading(true);
 
     try {
-      const snapshot = await uploadBytes(storageRef, file);
-      const fileUrl = await getDownloadURL(snapshot.ref);
-
-      setFileData({ fileUrl, fileName: file.name });
+      const result = await uploadFile(file);
+      setFileData({ 
+        fileUrl: result.fileUrl, 
+        fileName: result.fileName,
+        filePath: result.filePath 
+      });
       toast.success('File uploaded successfully!');
     } catch (error) {
       console.error('Error uploading file:', error);
@@ -134,12 +136,40 @@ const Material = () => {
             <h2 className="text-xl font-semibold text-blue-700">{material.title}</h2>
             <p className="text-sm text-gray-500 mb-3">{material.category}</p>
             <p className="text-gray-700 mb-3">{material.description}</p>
-            {material.fileUrl.includes('image') ? (
-              <img src={material.fileUrl} alt={material.title} className="w-full h-40 object-cover rounded-xl" />
+            {/* Check if it's an image by file extension */}
+            {(material.fileName && /\.(jpg|jpeg|png|gif|webp|bmp|svg)$/i.test(material.fileName)) ? (
+              <img 
+                src={material.fileUrl} 
+                alt={material.title} 
+                className="w-full h-40 object-cover rounded-xl"
+                onError={(e) => {
+                  console.error('Image failed to load:', material.fileUrl);
+                  e.target.style.display = 'none';
+                }}
+              />
             ) : (
-              <a href={material.fileUrl} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-                View Document
-              </a>
+              <div className="bg-gray-100 p-4 rounded-xl text-center">
+                <div className="text-4xl mb-2">
+                  {material.fileName && /\.pdf$/i.test(material.fileName) ? '📄' :
+                   material.fileName && /\.(doc|docx)$/i.test(material.fileName) ? '📝' :
+                   material.fileName && /\.(xls|xlsx)$/i.test(material.fileName) ? '📊' :
+                   material.fileName && /\.(ppt|pptx)$/i.test(material.fileName) ? '📊' :
+                   material.fileName && /\.(txt)$/i.test(material.fileName) ? '📋' :
+                   material.fileName && /\.(zip|rar|7z)$/i.test(material.fileName) ? '🗂️' :
+                   '📎'}
+                </div>
+                <a 
+                  href={material.fileUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-blue-600 hover:text-blue-800 font-medium transition"
+                >
+                Download {material.fileName || 'File'}
+                </a>
+                <p className="text-xs text-gray-500 mt-1">
+                  {material.fileName && material.fileName.split('.').pop()?.toUpperCase() || 'FILE'}
+                </p>
+              </div>
             )}
             <div className="mt-4 flex justify-between items-center">
               <button
