@@ -4,12 +4,13 @@ import { createClient } from '@supabase/supabase-js'
 // Your Supabase configuration from environment variables
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
+const bucketName = import.meta.env.VITE_SUPABASE_BUCKET_NAME || 'study-materials'
 
 // Create a single supabase client for interacting with your database
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
 // Helper function to upload file to Supabase storage
-export const uploadFile = async (file, bucket = 'mybucket') => {
+export const uploadFile = async (file, bucket = bucketName) => {
   try {
     console.log('Uploading to bucket:', bucket)
     console.log('File:', file.name)

@@ -77,7 +77,10 @@ npm run dev
 
 ## 🔑 Environment Variables
 
-Create a `.env` file in the backend project to store sensitive keys:
+Copy the `.env.example` files and rename them to `.env`, then fill in your actual values.
+
+### Backend Environment Variables
+Copy `backend/.env.example` to `backend/.env` and update:
 
 ```bash
 DB_URL="jdbc:mariadb://<DB_HOST>:<DB_PORT>/<DB_NAME>"
@@ -89,17 +92,24 @@ CORS_ORIGIN="<CORS_ORIGIN>"
 >note : if you are using other DB change it accordingly. 
 if you are using MySQL add a Mysql Dialect 
 
-Create a `.env` file in the frontend project:
+### Frontend Environment Variables
+Copy `frontend/.env.example` to `frontend/.env` and update:
 
 ```bash
 # Supabase Configuration
 VITE_SUPABASE_URL="<YOUR_SUPABASE_URL>"
 VITE_SUPABASE_ANON_KEY="<YOUR_SUPABASE_ANON_KEY>"
-
+VITE_SUPABASE_BUCKET_NAME="<YOUR_SUPABASE_BUCKET_NAME>"
 
 VITE_GEMINI_API_KEY="<GEMINI_API_KEY>"
 VITE_BACKEND_BASE_URL="<BACKEND_BASE_URL>"
 ```
+
+### Supabase Storage Setup
+- Create a new bucket in your Supabase project (e.g., "study-materials")
+- Make it public for easy file access
+- Set up access policies for authenticated users to upload files
+- Add the bucket name to your frontend `.env` file
 
 ---
 

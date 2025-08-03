@@ -1,0 +1,12 @@
+services:
+  study-app:
+    image: study-app
+    ports:
+      - 8080:8080
+    # network_mode: host #Use when Running With Local Mysql DB
+    environment:
+      - DB_URL=${DB_URL}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - JWT_SECRET=${JWT_SECRET}
+      - CORS_ORIGIN=${CORS_ORIGIN}
